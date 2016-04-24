@@ -14,6 +14,7 @@ def list_item(item):
     list_of_item = ("{} - {:<40s} = ${:>7.2f}".format(item[0], item[1] + "(" + item[2] + ")", item[3]))
     return list_of_item
 
+
 print("Items for Hire - by Hendry")
 item_stock = load_item()
 print("{} items loaded from inventory.csv".format(len(item_stock)))
@@ -81,3 +82,16 @@ while True:
                 print("Invalid item number")
             elif ValueError:
                 print("Invalid input; enter a number")
+    elif menu_choice == "A":
+        while True:
+            new_item_name = input("Item name:")
+            if new_item_name == "":
+                print("Input can not be blank")
+            else:
+                break
+        while True:
+            new_item_description = input("Item description:")
+            if new_item_description == "":
+                print("Input can not be blank")
+            else:
+                break
