@@ -95,3 +95,25 @@ while True:
                 print("Input can not be blank")
             else:
                 break
+        while True:
+            try:
+                new_item_price = float(input("Price per day:"))
+                if new_item_price < 0:
+                    print("Price must be >= $0")
+                    print("Invalid input; enter a valid number")
+                elif new_item_price >= 0:
+                    break
+            except ValueError:
+                print("Invalid input; enter a valid number")
+        item = [len(item_stock), new_item_name, new_item_description, float(new_item_price), "in"]
+        item_stock.append(item)
+    elif menu_choice == "Q":
+        print("Have a nice day")
+        break
+    else:
+        print("Invalid menu choice")
+output_file = open("inventory.csv","w")
+for item in item_stock:
+    item="{},{},{},{}".format(item[1],item[2],item[3],item[4])
+    print(item,file=output_file)
+output_file.close()
