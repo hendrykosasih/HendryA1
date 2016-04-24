@@ -9,3 +9,7 @@ def load_item():
         item_stock.append(item)
     item_import.close()
     return item_stock
+
+def list_item(item):
+    list_of_item = ("{} - {:<40s} = ${:>7.2f}".format(item[0], item[1] + "(" + item[2] + ")", item[3]))
+    return list_of_item
