@@ -43,18 +43,22 @@ while True:
                 elif item[4] == "out":
                     all_item.append(item[0])
             print("Please enter the number of item to hire")
-            hire_item = int(input(">>>"))
-            if hire_item in item_available_to_hire:
-                for item in item_stock:
-                    if item[0] == hire_item:
-                        item[4] = "out"
-                        print("{} hired for $ {:.2f}".format(item[1],item[3]))
-            elif hire_item not in item_available_to_hire and hire_item in all_item:
-                print("That item is not available for hire")
-            elif hire_item not in all_item:
-                print("Invalid item number")
-            elif ValueError:
-                print("Invalid input; enter a number")
+            while True:
+                try:
+                    hire_item = int(input(">>>"))
+                    if hire_item in item_available_to_hire:
+                        for item in item_stock:
+                            if item[0] == hire_item:
+                                item[4] = "out"
+                                print("{} hired for $ {:.2f}".format(item[1],item[3]))
+                        break
+                    elif hire_item not in item_available_to_hire and hire_item in all_item:
+                        print("That item is not available for hire")
+                        break
+                    elif hire_item not in all_item:
+                        print("Invalid item number")
+                except ValueError:
+                        print("Invalid input; enter a number")
     elif menu_choice == "R":
         item_to_return = [item for item in item_stock if item[4] == "out"]
         if len(item_to_return) == 0:
@@ -70,18 +74,21 @@ while True:
                 elif item[4] == "in":
                     all_item.append(item[0])
             print("Please enter the number of item to hire")
-            return_item = int(input(">>>"))
-            if return_item in item_available_to_return:
-                for item in item_stock:
-                    if item[0] == return_item:
-                        item[4] = "in"
-                        print("{} returned".format(item[1]))
-            elif return_item not in item_available_to_return and return_item in all_item:
-                print("That item is not available for hire")
-            elif return_item not in all_item:
-                print("Invalid item number")
-            elif ValueError:
-                print("Invalid input; enter a number")
+            while True:
+                try:
+                    return_item = int(input(">>>"))
+                    if return_item in item_available_to_return:
+                        for item in item_stock:
+                            if item[0] == return_item:
+                                item[4] = "in"
+                                print("{} returned".format(item[1]))
+                        break
+                    elif return_item not in item_available_to_return and return_item in all_item:
+                        print("That item is not available for hire")
+                    elif return_item not in all_item:
+                        print("Invalid item number")
+                except ValueError:
+                    print("Invalid input; enter a number")
     elif menu_choice == "A":
         while True:
             new_item_name = input("Item name:")
@@ -107,6 +114,7 @@ while True:
                 print("Invalid input; enter a valid number")
         item = [len(item_stock), new_item_name, new_item_description, float(new_item_price), "in"]
         item_stock.append(item)
+        print("{} ({}), {} now available for hire".format(item[1],item[2],item[3]))
     elif menu_choice == "Q":
         print("Have a nice day")
         break
@@ -117,3 +125,4 @@ for item in item_stock:
     item="{},{},{},{}".format(item[1],item[2],item[3],item[4])
     print(item,file=output_file)
 output_file.close()
+print("{} items saved to inventory.csv".format(len(item_stock)))
